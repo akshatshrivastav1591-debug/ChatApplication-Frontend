@@ -8,7 +8,7 @@ export function WebSocketConnection() {
     contextApiWebSocketCleint,
   );
 const wsToken=useSelector((state)=>state.jwtReducer.jwtToken);
-console.log("wsToken:",wsToken);
+
   useEffect(() => {
     if (client?.connected) {
       return;
