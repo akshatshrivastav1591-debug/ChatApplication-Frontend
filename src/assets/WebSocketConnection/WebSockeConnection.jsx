@@ -20,7 +20,7 @@ const wsToken=useSelector((state)=>state.jwtReducer.jwtToken);
     }
      
     const FreshClient = new Client({
-      brokerURL:`${API_BASE_URLFORWEBSOCKET}/chat/websocket` ,
+      brokerURL:`${API_BASE_URLFORWEBSOCKET}/chat` ,
       connectHeaders:{
           Authorization: `Bearer ${wsToken}`
       },
