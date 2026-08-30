@@ -117,7 +117,9 @@ export function GroupChatUI({
       return;
     }
     const file = Array.from(e.target.files);
+    console.log("Selected files count:", file.length);
     if (file.length > 0) {
+      
       objectUrls.forEach((url) => URL.revokeObjectURL(url));
       const urls = file.map((f) => URL.createObjectURL(f));
       setObjectUrls(urls);
