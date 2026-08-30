@@ -2,11 +2,12 @@ import { Client } from "@stomp/stompjs";
 import { useContext, useEffect } from "react";
 import { contextApiWebSocketCleint } from "../ContexApi/ContextApiStore";
 import { API_BASE_URLFORWEBSOCKET } from "../../Config/api";
+import { useSelector } from "react-redux";
 export function WebSocketConnection() {
   const { client, setClient, IsAuthenticated } = useContext(
     contextApiWebSocketCleint,
   );
-
+const wsToken=useSelector((state)=>state.jwtReducer.jwtToken);
   useEffect(() => {
     if (client?.connected) {
       return;
@@ -14,9 +15,15 @@ export function WebSocketConnection() {
     if (!IsAuthenticated) {
       return;
     }
-   
+    if(!wsToken){
+      return;
+    }
+     
     const FreshClient = new Client({
       brokerURL:`${API_BASE_URLFORWEBSOCKET}/chat/websocket` ,
+      connectHeaders:{
+          Authorization: `Bearer ${wsToken}`
+      },
       reconnectDelay: 5000,
       onConnect: () => {
         setClient(FreshClient);
@@ -27,6 +34,6 @@ export function WebSocketConnection() {
     return () => {
       FreshClient.deactivate();
     };
-  }, [IsAuthenticated, setClient]);
+  }, [IsAuthenticated, setClient,wsToken]);
   return null;
 }

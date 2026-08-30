@@ -17,7 +17,7 @@ import { useDispatch } from "react-redux";
 import { fetchedGroupDetailsSliceActions } from "../assets/Redux/FetchedGroupDetailsSlice";
 import { useNavigate } from "react-router-dom";
 import { API_BASE_URL } from "../Config/api";
-
+import { jwtReducerSliceActions } from "../assets/Redux/JwtTokenReducer";
 export function LogoutUi() {
   const { client, setClient, setIsAuthenticated } = useContext(
     contextApiWebSocketCleint,
@@ -57,6 +57,7 @@ export function LogoutUi() {
         setChatIndex(null);
         setUnseenCount(0);
         dispatch(fetchedGroupDetailsSliceActions.logout());
+        dispatch(jwtReducerSliceActions.setJwtTokenToNull());
         navigate("/Login");
       } else {
         throw new Error("Something Wrong with backend:");

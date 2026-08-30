@@ -10,6 +10,7 @@ import {
   contextStoringIndexForChatDetail,
 } from "./ContexApi/ContextApiStore";
 import { fetchedGroupDetailsSliceActions } from "./Redux/FetchedGroupDetailsSlice";
+import { jwtReducerSliceActions } from "./Redux/JwtTokenReducer";
 import { useScreenSize } from "../GetCurrentScreenSize";
 import { API_BASE_URL } from "../Config/api";
 export function Login() {
@@ -42,6 +43,7 @@ export function Login() {
       setloading(false);
       setIsAuthenticated(true);
       if (currentUserID === null) setCurrentUserID(data.currentUserID);
+        dispatch(jwtReducerSliceActions.setJwtToken(data.wsToken));
       if(width>768){setChatIndex(0)
         dispatch(fetchedGroupDetailsSliceActions.setSelectedGroupIndex(0));
       }
