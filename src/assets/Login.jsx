@@ -43,6 +43,7 @@ export function Login() {
       setloading(false);
       setIsAuthenticated(true);
       if (currentUserID === null) setCurrentUserID(data.currentUserID);
+      console.log("response Object=",data);
         dispatch(jwtReducerSliceActions.setJwtToken(data.wsToken));
       if(width>768){setChatIndex(0)
         dispatch(fetchedGroupDetailsSliceActions.setSelectedGroupIndex(0));
