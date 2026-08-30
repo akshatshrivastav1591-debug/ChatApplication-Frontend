@@ -4,9 +4,13 @@ import { Link } from "react-router-dom";
 import { useContext, useEffect } from "react";
 import { contextApiWebSocketCleint } from "./ContexApi/ContextApiStore";
 import { API_BASE_URL } from "../Config/api";
+import { useDispatch } from "react-redux";
+import { jwtReducerSliceActions } from "./Redux/JwtTokenReducer";
 export function Root() {
   const navigate = useNavigate();
   const { setIsAuthenticated } = useContext(contextApiWebSocketCleint);
+  // redux
+  const dispatch=useDispatch();
   useEffect(() => {
     async function AuthenticatingJwtToken() {
       const response = await fetch(
@@ -18,8 +22,8 @@ export function Root() {
       );
       if (response.ok) {
         const data = await response.json();
-
         setIsAuthenticated(true);
+        dispatch(jwtReducerSliceActions.setJwtToken(data.wsToken));
         navigate("/MainUI/ChatList");
       } else {
         navigate("/Login");
