@@ -18,7 +18,7 @@ export function ReceivedImages({
     alt="avatar"
     className="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover flex-shrink-0"
   />
-  <div className="bg-white rounded-tl-sm rounded-tr-2xl rounded-br-2xl rounded-bl-2xl border border-gray-100 overflow-hidden">
+  <div className="bg-white rounded-tl-sm rounded-tr-2xl rounded-br-2xl rounded-bl-2xl border border-gray-100 overflow-hidden" onClick={onSelected}>
     <img
       src={receivedImages}
       alt="received"

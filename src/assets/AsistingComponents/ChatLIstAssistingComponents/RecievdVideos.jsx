@@ -3,7 +3,7 @@ export function ReceivedVideos({attachedMessages,videoUrl,messageTiming,viewFile
     return (
         <>
         { selectedIndex===index?<DeleteMessageOptionUiForRecievedMessage onDelete={deletedForOneSide} closeTab={onSelected} viewFile={viewFile}/>:
-    <div className="flex items-end gap-2 max-w-[85%] sm:max-w-[72%] self-start mt-3">
+    <div className="flex items-end gap-2 max-w-[85%] sm:max-w-[72%] self-start mt-3" onClick={onSelected}>
   <div className="bg-white rounded-tl-sm rounded-tr-2xl rounded-br-2xl rounded-bl-2xl border border-gray-100 overflow-hidden">
     <div className="w-48 h-28 sm:w-60 sm:h-36 bg-[#1a1a2e] flex items-center justify-center relative">
       <video src={videoUrl} className="w-full h-full object-cover absolute inset-0" />
